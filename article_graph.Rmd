@@ -1,0 +1,35 @@
+```{r}
+library(ggplot2)
+```
+
+
+```{r}
+olo <- read.csv("ZESTAWIENIE.csv", sep = ",", header = TRUE)
+```
+
+```{r}
+head(olo)
+```
+
+```{r}
+olo$data <- as.Date(olo$data, "%Y-%m-%d")
+```
+
+```{r}
+ggplot(aes(x = data, y = uzytkownicy/1000, color = platforma), data = olo) +
+  geom_point() +
+  geom_line(size = 0.9) +
+  ylab("użytkownicy (w tysiącach)") +
+  xlab("rok") +
+  ggtitle("Popolarność wybranych platform internetowych", subtitle = "Według raportów Gemius SA oraz PBI Sp. z o.o.")
+```
+```{r}
+ggsave("graph.png", width = 8, height = 4)
+```
+
+
+
+
+
+
+
